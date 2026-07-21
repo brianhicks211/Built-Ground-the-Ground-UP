@@ -5,27 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Built From the Ground Up — construction conversations, practical advice, and industry insight for contractors, homeowners, and skilled trades." />
   <title>Built From the Ground Up</title>
+  <link rel="icon" type="image/png" href="748bb3_5f6c81f4726547bb81b1e0423a726688~mv2.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #151515;
-      --ink-soft: #242320;
-      --paper: #f4efe6;
-      --paper-deep: #e8dfd1;
-      --white: #fffdf8;
-      --orange: #e56f2f;
-      --orange-dark: #bd4f1c;
-      --yellow: #f1b51c;
-      --muted: #766f64;
-      --line: rgba(21, 21, 21, 0.16);
-      --shadow: 0 20px 60px rgba(20, 18, 15, 0.18);
+      /* Brand colors sampled from the BGTU logo */
+      --ink: #171116;
+      --ink-soft: #2d1c25;
+      --paper: #fff7f3;
+      --paper-deep: #ffe9df;
+      --white: #ffffff;
+      --pink: #e43868;
+      --pink-dark: #b91f50;
+      --orange: #f07828;
+      --orange-dark: #cf5610;
+      --peach: #ffd3c0;
+      --yellow: #ffad48;
+      --muted: #75656c;
+      --line: rgba(228, 56, 104, 0.18);
+      --shadow: 0 22px 65px rgba(98, 30, 56, 0.18);
+      --brand-gradient: linear-gradient(135deg, var(--pink) 0%, var(--pink) 46%, var(--orange) 100%);
+      --brand-gradient-horizontal: linear-gradient(90deg, var(--pink) 0%, var(--orange) 100%);
       --radius: 22px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    ::selection { background: var(--pink); color: white; }
     body {
       margin: 0;
       color: var(--ink);
@@ -60,7 +68,7 @@
       letter-spacing: .18em;
       font-size: .76rem;
       font-weight: 800;
-      color: var(--orange);
+      color: var(--pink);
     }
 
     .section-title {
@@ -84,7 +92,7 @@
     }
 
     .site-header.scrolled {
-      background: rgba(18, 18, 17, .93);
+      background: rgba(23, 17, 22, .94);
       backdrop-filter: blur(14px);
       border-color: rgba(255, 255, 255, .1);
     }
@@ -100,37 +108,19 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 13px;
-      font-family: "Oswald", Impact, sans-serif;
-      font-weight: 600;
-      letter-spacing: .045em;
       line-height: 1;
-      text-transform: uppercase;
     }
 
-    .brand-mark {
-      position: relative;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 2px solid white;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
+    .brand-logo {
+      width: 178px;
+      height: auto;
+      max-height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 14px rgba(0, 0, 0, .28));
+      transition: transform .25s ease;
     }
 
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      background: var(--orange);
-      transform: rotate(-15deg);
-    }
-
-    .brand-mark::before { width: 9px; height: 58px; }
-    .brand-mark::after { width: 58px; height: 9px; }
-
-    .brand-name { font-size: .95rem; max-width: 150px; }
+    .brand:hover .brand-logo { transform: translateY(-2px); }
 
     .nav-links {
       display: flex;
@@ -150,7 +140,7 @@
       bottom: -6px;
       width: 100%;
       height: 2px;
-      background: var(--orange);
+      background: var(--brand-gradient-horizontal);
       transform: scaleX(0);
       transform-origin: right;
       transition: transform .25s ease;
@@ -167,7 +157,7 @@
       cursor: pointer;
       min-height: 50px;
       padding: 0 23px;
-      background: var(--orange);
+      background: var(--brand-gradient);
       color: white;
       font-family: inherit;
       font-weight: 800;
@@ -177,8 +167,9 @@
     }
     .nav-cta:hover, .btn:hover {
       transform: translateY(-3px);
-      background: var(--orange-dark);
-      box-shadow: 0 12px 30px rgba(229, 111, 47, .28);
+      background: var(--brand-gradient);
+      filter: saturate(1.08) brightness(.94);
+      box-shadow: 0 14px 34px rgba(228, 56, 104, .30);
     }
 
     .menu-toggle {
@@ -208,8 +199,8 @@
       color: white;
       isolation: isolate;
       background:
-        linear-gradient(90deg, rgba(12, 12, 11, .92) 0%, rgba(12, 12, 11, .68) 45%, rgba(12, 12, 11, .22) 100%),
-        linear-gradient(0deg, rgba(12,12,11,.7), transparent 50%),
+        linear-gradient(90deg, rgba(23, 17, 22, .94) 0%, rgba(52, 24, 37, .76) 45%, rgba(23, 17, 22, .22) 100%),
+        linear-gradient(0deg, rgba(23,17,22,.76), transparent 52%),
         url("https://images.pexels.com/photos/9050949/pexels-photo-9050949.jpeg?auto=compress&cs=tinysrgb&w=2000") center 35% / cover no-repeat;
     }
 
@@ -249,7 +240,7 @@
       content: "";
       width: 55px;
       height: 3px;
-      background: var(--orange);
+      background: var(--brand-gradient-horizontal);
     }
 
     .hero h1 {
@@ -265,8 +256,12 @@
 
     .hero h1 span {
       display: block;
-      color: var(--orange);
-      -webkit-text-stroke: 1px rgba(255,255,255,.18);
+      color: transparent;
+      background: var(--brand-gradient-horizontal);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-stroke: 1px rgba(255,255,255,.12);
+      filter: drop-shadow(0 7px 24px rgba(228,56,104,.18));
     }
 
     .hero-copy {
@@ -307,11 +302,11 @@
       width: 68%;
       height: 68%;
       border-radius: 50%;
-      border: 1px dashed var(--orange);
+      border: 1px dashed var(--pink);
       animation: spin 14s linear infinite;
     }
 
-    .hero-badge strong { font-size: 2.5rem; line-height: .9; color: var(--yellow); }
+    .hero-badge strong { font-size: 2.5rem; line-height: .9; color: var(--orange); }
     .hero-badge span { font-size: .72rem; max-width: 100px; }
 
     @keyframes float { 50% { transform: translateY(-12px); } }
@@ -319,9 +314,9 @@
 
     .ticker {
       overflow: hidden;
-      background: var(--orange);
+      background: var(--brand-gradient-horizontal);
       color: white;
-      border-block: 1px solid rgba(255,255,255,.22);
+      border-block: 1px solid rgba(255,255,255,.24);
     }
     .ticker-track {
       width: max-content;
@@ -339,7 +334,7 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
-    .ticker-item::after { content: "✦"; color: var(--ink); }
+    .ticker-item::after { content: "✦"; color: white; opacity: .72; }
     @keyframes ticker { to { transform: translateX(-50%); } }
 
     .episodes { padding: 120px 0 135px; }
@@ -370,6 +365,10 @@
       flex-direction: column;
       background: var(--white);
       border: 1px solid var(--line);
+      border-top: 4px solid transparent;
+      background-image: linear-gradient(var(--white), var(--white)), var(--brand-gradient-horizontal);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
       overflow: hidden;
       transition: transform .35s ease, box-shadow .35s ease;
     }
@@ -394,7 +393,7 @@
       display: grid;
       place-items: center;
       color: white;
-      background: var(--orange);
+      background: var(--brand-gradient);
       font-family: "Oswald", Impact, sans-serif;
       font-size: 1.35rem;
       border: 5px solid var(--white);
@@ -433,7 +432,7 @@
       text-transform: uppercase;
       letter-spacing: .08em;
     }
-    .read-link::after { content: "→"; font-size: 1.25rem; color: var(--orange); transition: transform .2s ease; }
+    .read-link::after { content: "→"; font-size: 1.25rem; color: var(--pink); transition: transform .2s ease; }
     .read-link:hover::after { transform: translateX(5px); }
 
     .mission {
@@ -449,7 +448,8 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(120deg, transparent 65%, rgba(229,111,47,.22));
+      background:
+        linear-gradient(120deg, transparent 58%, rgba(228,56,104,.22) 82%, rgba(240,120,40,.24));
     }
     .mission-grid {
       position: relative;
@@ -460,10 +460,16 @@
       align-items: center;
     }
     .mission .section-title { max-width: 660px; }
-    .mission .section-title em { color: var(--orange); font-style: normal; }
+    .mission .section-title em {
+      color: transparent;
+      background: var(--brand-gradient-horizontal);
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-style: normal;
+    }
     .mission-copy {
       padding: 35px;
-      border-left: 4px solid var(--orange);
+      border-left: 4px solid var(--pink);
       background: rgba(255,255,255,.06);
       backdrop-filter: blur(8px);
     }
@@ -475,7 +481,7 @@
       border-top: 1px solid rgba(255,255,255,.2);
     }
     .stat { padding: 25px 15px 0 0; }
-    .stat strong { display: block; font-family: "Oswald", Impact, sans-serif; font-size: 2.6rem; color: var(--yellow); }
+    .stat strong { display: block; font-family: "Oswald", Impact, sans-serif; font-size: 2.6rem; color: var(--orange); }
     .stat span { color: rgba(255,255,255,.62); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; }
 
     .listen { padding: 115px 0; background: var(--paper-deep); }
@@ -505,7 +511,7 @@
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: var(--orange);
+      background: var(--brand-gradient);
       color: white;
       font-weight: 900;
       font-size: 1.25rem;
@@ -543,7 +549,8 @@
       bottom: 18px;
       max-width: 80%;
       padding: 8px 11px;
-      background: rgba(15,15,14,.72);
+      background: linear-gradient(90deg, rgba(228,56,104,.88), rgba(240,120,40,.84));
+      border-left: 3px solid white;
       font-size: .7rem;
       font-weight: 700;
       letter-spacing: .07em;
@@ -551,8 +558,27 @@
       backdrop-filter: blur(8px);
     }
 
-    .newsletter { padding: 100px 0; background: var(--orange); color: white; }
+    .newsletter {
+      position: relative;
+      padding: 100px 0;
+      background: var(--brand-gradient-horizontal);
+      color: white;
+      overflow: hidden;
+    }
+    .newsletter::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background-image:
+        linear-gradient(45deg, transparent 46%, white 47%, white 49%, transparent 50%),
+        linear-gradient(-45deg, transparent 46%, white 47%, white 49%, transparent 50%);
+      background-size: 42px 42px;
+    }
     .newsletter-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 70px;
@@ -585,7 +611,7 @@
     }
     .newsletter-note { margin: 10px 0 0; font-size: .75rem; opacity: .75; }
 
-    .site-footer { padding: 75px 0 30px; background: #10100f; color: white; }
+    .site-footer { padding: 75px 0 30px; background: #171116; color: white; }
     .footer-grid {
       display: grid;
       grid-template-columns: 1.3fr .7fr .8fr;
@@ -593,18 +619,15 @@
       padding-bottom: 60px;
       border-bottom: 1px solid rgba(255,255,255,.14);
     }
-    .footer-logo {
-      margin: 0;
-      font-family: "Oswald", Impact, sans-serif;
-      font-size: clamp(3.5rem, 7vw, 7rem);
-      line-height: .85;
-      letter-spacing: -.04em;
-      text-transform: uppercase;
-      color: var(--orange);
+    .footer-logo-image {
+      width: min(390px, 100%);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 24px rgba(0, 0, 0, .32));
     }
     .footer-column h3 {
       margin: 0 0 18px;
-      color: var(--yellow);
+      color: var(--orange);
       font-size: .77rem;
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -623,8 +646,22 @@
       margin: 0;
       transition: .2s ease;
     }
-    .socials a:hover { background: var(--orange); border-color: var(--orange); }
+    .socials a:hover { background: var(--brand-gradient); border-color: var(--pink); }
     .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; color: rgba(255,255,255,.48); font-size: .78rem; }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 76px;
+      height: 6px;
+      margin-top: 18px;
+      background: var(--brand-gradient-horizontal);
+    }
+    .mission .section-title::after { background: var(--brand-gradient-horizontal); }
+    .episode-card:hover { border-color: rgba(228,56,104,.42); }
+    .platform:hover .platform-icon { box-shadow: 0 8px 22px rgba(228,56,104,.35); }
+    .newsletter-form input:focus { box-shadow: inset 0 0 0 3px rgba(228,56,104,.22); }
+    .newsletter-form button:hover { background: #2b1722; }
 
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -640,7 +677,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        background: #141413;
+        background: #21131b;
         transform: translateX(100%);
         transition: transform .3s ease;
       }
@@ -669,8 +706,7 @@
     @media (max-width: 680px) {
       .container { width: min(100% - 28px, 1180px); }
       .nav { height: 76px; }
-      .brand-mark { width: 38px; height: 38px; }
-      .brand-name { font-size: .78rem; max-width: 120px; }
+      .brand-logo { width: 145px; max-height: 62px; }
       .hero { min-height: 720px; background-position: 62% center; }
       .hero-inner { padding-top: 145px; padding-bottom: 66px; }
       .hero h1 { font-size: clamp(4.2rem, 22vw, 6.3rem); }
@@ -704,8 +740,7 @@
   <header class="site-header" id="header">
     <div class="container nav">
       <a class="brand" href="#home" aria-label="Built From the Ground Up home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-name">Built From the Ground Up</span>
+        <img class="brand-logo" src="748bb3_5f6c81f4726547bb81b1e0423a726688~mv2.png" alt="Built From the Ground Up logo">
       </a>
 
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
@@ -868,7 +903,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h2 class="footer-logo">Built From<br>The Ground Up</h2>
+          <img class="footer-logo-image" src="748bb3_5f6c81f4726547bb81b1e0423a726688~mv2.png" alt="Built From the Ground Up logo">
         </div>
         <div class="footer-column">
           <h3>Explore</h3>
