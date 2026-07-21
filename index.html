@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Built From the Ground Up — construction conversations, practical advice, and industry insight for contractors, homeowners, and skilled trades." />
+  <title>Built From the Ground Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #151515;
+      --ink-soft: #242320;
+      --paper: #f4efe6;
+      --paper-deep: #e8dfd1;
+      --white: #fffdf8;
+      --orange: #e56f2f;
+      --orange-dark: #bd4f1c;
+      --yellow: #f1b51c;
+      --muted: #766f64;
+      --line: rgba(21, 21, 21, 0.16);
+      --shadow: 0 20px 60px rgba(20, 18, 15, 0.18);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .035;
+      z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .76rem;
+      font-weight: 800;
+      color: var(--orange);
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5.8rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: -.035em;
+      line-height: .98;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: background .3s ease, border-color .3s ease, transform .3s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-header.scrolled {
+      background: rgba(18, 18, 17, .93);
+      backdrop-filter: blur(14px);
+      border-color: rgba(255, 255, 255, .1);
+    }
+
+    .nav {
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-weight: 600;
+      letter-spacing: .045em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid white;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      background: var(--orange);
+      transform: rotate(-15deg);
+    }
+
+    .brand-mark::before { width: 9px; height: 58px; }
+    .brand-mark::after { width: 58px; height: 9px; }
+
+    .brand-name { font-size: .95rem; max-width: 150px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-weight: 700;
+      font-size: .84rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:not(.nav-cta) { position: relative; }
+    .nav-links a:not(.nav-cta)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .25s ease;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .nav-cta,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      border: 0;
+      cursor: pointer;
+      min-height: 50px;
+      padding: 0 23px;
+      background: var(--orange);
+      color: white;
+      font-family: inherit;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .nav-cta:hover, .btn:hover {
+      transform: translateY(-3px);
+      background: var(--orange-dark);
+      box-shadow: 0 12px 30px rgba(229, 111, 47, .28);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: transparent;
+      color: white;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 21px;
+      height: 2px;
+      margin: 5px auto;
+      background: currentColor;
+      transition: .25s ease;
+    }
+
+    .hero {
+      min-height: 860px;
+      position: relative;
+      display: grid;
+      align-items: end;
+      color: white;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(12, 12, 11, .92) 0%, rgba(12, 12, 11, .68) 45%, rgba(12, 12, 11, .22) 100%),
+        linear-gradient(0deg, rgba(12,12,11,.7), transparent 50%),
+        url("https://images.pexels.com/photos/9050949/pexels-photo-9050949.jpeg?auto=compress&cs=tinysrgb&w=2000") center 35% / cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to right, black, transparent 75%);
+    }
+
+    .hero-inner {
+      padding-top: 170px;
+      padding-bottom: 95px;
+      display: grid;
+      grid-template-columns: minmax(0, 760px) 1fr;
+      gap: 50px;
+      align-items: end;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 21px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 55px;
+      height: 3px;
+      background: var(--orange);
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 850px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: clamp(4.7rem, 9.5vw, 9.2rem);
+      font-weight: 600;
+      letter-spacing: -.055em;
+      line-height: .82;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--orange);
+      -webkit-text-stroke: 1px rgba(255,255,255,.18);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 28px 0 32px;
+      color: rgba(255,255,255,.82);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.55);
+    }
+    .btn-secondary:hover { background: white; color: var(--ink); box-shadow: none; }
+
+    .hero-badge {
+      justify-self: end;
+      align-self: end;
+      width: 190px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(16,16,15,.35);
+      backdrop-filter: blur(12px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-family: "Oswald", Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-badge::before {
+      content: "";
+      position: absolute;
+      width: 68%;
+      height: 68%;
+      border-radius: 50%;
+      border: 1px dashed var(--orange);
+      animation: spin 14s linear infinite;
+    }
+
+    .hero-badge strong { font-size: 2.5rem; line-height: .9; color: var(--yellow); }
+    .hero-badge span { font-size: .72rem; max-width: 100px; }
+
+    @keyframes float { 50% { transform: translateY(-12px); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .ticker {
+      overflow: hidden;
+      background: var(--orange);
+      color: white;
+      border-block: 1px solid rgba(255,255,255,.22);
+    }
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      animation: ticker 25s linear infinite;
+    }
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 17px 28px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .ticker-item::after { content: "✦"; color: var(--ink); }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    .episodes { padding: 120px 0 135px; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .section-intro {
+      max-width: 420px;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+
+    .episode-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 28px;
+    }
+
+    .episode-card {
+      grid-column: span 4;
+      position: relative;
+      min-height: 610px;
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .episode-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+    .episode-card:nth-child(2) { transform: translateY(35px); }
+    .episode-card:nth-child(2):hover { transform: translateY(25px); }
+
+    .episode-image {
+      position: relative;
+      aspect-ratio: 1.35 / 1;
+      overflow: hidden;
+      background: #b8b1a5;
+    }
+    .episode-image img { height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .episode-card:hover .episode-image img { transform: scale(1.06); }
+    .episode-number {
+      position: absolute;
+      left: 18px;
+      bottom: -24px;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--orange);
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: 1.35rem;
+      border: 5px solid var(--white);
+    }
+
+    .episode-body { padding: 48px 25px 25px; display: flex; flex: 1; flex-direction: column; }
+    .episode-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .episode-card h3 {
+      margin: 0 0 15px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+    .episode-card p { color: var(--muted); margin: 0 0 24px; }
+    .read-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: max-content;
+      font-size: .82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .read-link::after { content: "→"; font-size: 1.25rem; color: var(--orange); transition: transform .2s ease; }
+    .read-link:hover::after { transform: translateX(5px); }
+
+    .mission {
+      position: relative;
+      padding: 130px 0;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(22,22,21,.97) 0%, rgba(22,22,21,.90) 50%, rgba(22,22,21,.45) 100%),
+        url("https://images.pexels.com/photos/8830265/pexels-photo-8830265.jpeg?auto=compress&cs=tinysrgb&w=1900") center / cover no-repeat;
+    }
+    .mission::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, transparent 65%, rgba(229,111,47,.22));
+    }
+    .mission-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 90px;
+      align-items: center;
+    }
+    .mission .section-title { max-width: 660px; }
+    .mission .section-title em { color: var(--orange); font-style: normal; }
+    .mission-copy {
+      padding: 35px;
+      border-left: 4px solid var(--orange);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(8px);
+    }
+    .mission-copy p { margin: 0; color: rgba(255,255,255,.82); font-size: 1.12rem; }
+    .mission-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 42px;
+      border-top: 1px solid rgba(255,255,255,.2);
+    }
+    .stat { padding: 25px 15px 0 0; }
+    .stat strong { display: block; font-family: "Oswald", Impact, sans-serif; font-size: 2.6rem; color: var(--yellow); }
+    .stat span { color: rgba(255,255,255,.62); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; }
+
+    .listen { padding: 115px 0; background: var(--paper-deep); }
+    .listen-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 85px;
+      align-items: center;
+    }
+    .listen-copy p { max-width: 430px; color: var(--muted); }
+    .platforms { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .platform {
+      min-height: 118px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      transition: transform .25s ease, background .25s ease, color .25s ease;
+    }
+    .platform:hover { transform: translateY(-5px); background: var(--ink); color: white; }
+    .platform-icon {
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--orange);
+      color: white;
+      font-weight: 900;
+      font-size: 1.25rem;
+    }
+    .platform span { display: block; color: var(--muted); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .platform:hover span { color: rgba(255,255,255,.6); }
+    .platform strong { font-family: "Oswald", Impact, sans-serif; font-size: 1.35rem; text-transform: uppercase; }
+
+    .gallery { padding: 0; background: var(--ink); color: white; }
+    .gallery-head {
+      padding: 95px 0 42px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 35px;
+    }
+    .gallery-copy { max-width: 440px; color: rgba(255,255,255,.62); }
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(260px, 1fr));
+      overflow: hidden;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: .82 / 1;
+      overflow: hidden;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .gallery-item img { height: 100%; object-fit: cover; filter: saturate(.8); transition: transform .6s ease, filter .4s ease; }
+    .gallery-item:hover img { transform: scale(1.06); filter: saturate(1); }
+    .gallery-item::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      max-width: 80%;
+      padding: 8px 11px;
+      background: rgba(15,15,14,.72);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .newsletter { padding: 100px 0; background: var(--orange); color: white; }
+    .newsletter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .newsletter h2 { margin: 0; font-family: "Oswald", Impact, sans-serif; font-size: clamp(2.7rem, 5vw, 5.3rem); line-height: .96; text-transform: uppercase; }
+    .newsletter-form { display: flex; }
+    .newsletter-form input {
+      min-width: 0;
+      flex: 1;
+      height: 58px;
+      border: 0;
+      padding: 0 18px;
+      font: inherit;
+      background: white;
+      color: var(--ink);
+      outline: none;
+    }
+    .newsletter-form button {
+      height: 58px;
+      border: 0;
+      padding: 0 24px;
+      background: var(--ink);
+      color: white;
+      font: inherit;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      cursor: pointer;
+    }
+    .newsletter-note { margin: 10px 0 0; font-size: .75rem; opacity: .75; }
+
+    .site-footer { padding: 75px 0 30px; background: #10100f; color: white; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .8fr;
+      gap: 60px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .footer-logo {
+      margin: 0;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      line-height: .85;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .footer-column h3 {
+      margin: 0 0 18px;
+      color: var(--yellow);
+      font-size: .77rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .footer-column a, .footer-column p { display: block; margin: 0 0 10px; color: rgba(255,255,255,.72); }
+    .footer-column a:hover { color: white; }
+    .socials { display: flex; gap: 10px; margin-top: 22px; }
+    .socials a {
+      width: 41px;
+      height: 41px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.25);
+      font-size: .72rem;
+      font-weight: 800;
+      margin: 0;
+      transition: .2s ease;
+    }
+    .socials a:hover { background: var(--orange); border-color: var(--orange); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; color: rgba(255,255,255,.48); font-size: .78rem; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(360px, 88vw);
+        height: 100vh;
+        padding: 110px 34px 40px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #141413;
+        transform: translateX(100%);
+        transition: transform .3s ease;
+      }
+      .nav-links.open { transform: translateX(0); }
+      .nav-links a { padding: 18px 4px; border-bottom: 1px solid rgba(255,255,255,.12); }
+      .nav-cta { margin-top: 20px; }
+      .menu-toggle { display: block; position: relative; z-index: 2; }
+      .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .menu-toggle.open span:nth-child(2) { opacity: 0; }
+      .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .hero { min-height: 780px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-badge { display: none; }
+      .episode-grid { gap: 18px; }
+      .episode-card { grid-column: span 6; }
+      .episode-card:nth-child(2) { transform: none; }
+      .episode-card:nth-child(2):hover { transform: translateY(-10px); }
+      .episode-card:last-child { grid-column: 4 / span 6; }
+      .mission-grid, .listen-grid, .newsletter-grid { grid-template-columns: 1fr; gap: 45px; }
+      .gallery-strip { grid-template-columns: repeat(5, 300px); overflow-x: auto; scrollbar-width: thin; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(100% - 28px, 1180px); }
+      .nav { height: 76px; }
+      .brand-mark { width: 38px; height: 38px; }
+      .brand-name { font-size: .78rem; max-width: 120px; }
+      .hero { min-height: 720px; background-position: 62% center; }
+      .hero-inner { padding-top: 145px; padding-bottom: 66px; }
+      .hero h1 { font-size: clamp(4.2rem, 22vw, 6.3rem); }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .episodes, .mission, .listen { padding: 85px 0; }
+      .section-head { display: block; }
+      .section-intro { margin-top: 20px; }
+      .episode-card, .episode-card:last-child { grid-column: 1 / -1; min-height: 0; }
+      .mission-copy { padding: 25px 22px; }
+      .mission-stats { grid-template-columns: 1fr; }
+      .platforms { grid-template-columns: 1fr; }
+      .gallery-head { display: block; padding-top: 75px; }
+      .gallery-copy { margin-top: 18px; }
+      .newsletter { padding: 75px 0; }
+      .newsletter-form { display: block; }
+      .newsletter-form input, .newsletter-form button { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: auto; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Built From the Ground Up home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Built From the Ground Up</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#episodes">Episodes</a>
+        <a href="#mission">Mission</a>
+        <a href="#gallery">On Site</a>
+        <a class="nav-cta" href="#listen">Listen Now</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <div class="hero-kicker">The construction podcast for people who build</div>
+          <h1>Building <span>Conversations</span></h1>
+          <p class="hero-copy">Expert interviews and practical field knowledge from contractors, homeowners, project leaders, and the skilled professionals who turn plans into finished work.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#listen">▶ Listen to the podcast</a>
+            <a class="btn btn-secondary" href="#episodes">Explore episodes</a>
+          </div>
+        </div>
+        <div class="hero-badge" aria-hidden="true"><div><strong>New</strong><br><span>episodes & field stories</span></div></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Podcast topics">
+      <div class="ticker-track">
+        <div class="ticker-item">Blueprints</div><div class="ticker-item">Project Management</div><div class="ticker-item">Home Renovation</div><div class="ticker-item">Skilled Trades</div><div class="ticker-item">Jobsite Safety</div><div class="ticker-item">Building Better</div>
+        <div class="ticker-item">Blueprints</div><div class="ticker-item">Project Management</div><div class="ticker-item">Home Renovation</div><div class="ticker-item">Skilled Trades</div><div class="ticker-item">Jobsite Safety</div><div class="ticker-item">Building Better</div>
+      </div>
+    </div>
+
+    <section class="episodes" id="episodes">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Fresh from the jobsite</p>
+            <h2 class="section-title">Latest Episodes</h2>
+          </div>
+          <p class="section-intro">Real conversations, practical lessons, and proven strategies for people planning, managing, and completing construction projects.</p>
+        </div>
+
+        <div class="episode-grid">
+          <article class="episode-card reveal">
+            <div class="episode-image">
+              <img src="https://images.pexels.com/photos/8961522/pexels-photo-8961522.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Construction professionals discussing a project on site" loading="lazy" />
+              <span class="episode-number">01</span>
+            </div>
+            <div class="episode-body">
+              <div class="episode-meta"><span>2 days ago</span><span>4 min read</span></div>
+              <h3>Top Construction Tips for Homeowners and Contractors</h3>
+              <p>Building or renovating a home can be rewarding and challenging. Start with the right plan, set realistic expectations, and use practical strategies that keep the work moving.</p>
+              <a class="read-link" href="#">Read the episode notes</a>
+            </div>
+          </article>
+
+          <article class="episode-card reveal">
+            <div class="episode-image">
+              <img src="https://images.pexels.com/photos/7961889/pexels-photo-7961889.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Construction workers preparing structural steel" loading="lazy" />
+              <span class="episode-number">02</span>
+            </div>
+            <div class="episode-body">
+              <div class="episode-meta"><span>2 days ago</span><span>3 min read</span></div>
+              <h3>Boost Your Construction Knowledge With Our Podcast</h3>
+              <p>Stay current with changing tools, techniques, and technology through interviews, field-tested advice, and conversations with people working across the construction industry.</p>
+              <a class="read-link" href="#">Read the episode notes</a>
+            </div>
+          </article>
+
+          <article class="episode-card reveal">
+            <div class="episode-image">
+              <img src="https://images.pexels.com/photos/11293626/pexels-photo-11293626.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Construction crew working together on a wood structure" loading="lazy" />
+              <span class="episode-number">03</span>
+            </div>
+            <div class="episode-body">
+              <div class="episode-meta"><span>2 days ago</span><span>3 min read</span></div>
+              <h3>Listen to the Best in Construction: Podcast Highlights</h3>
+              <p>Explore standout ideas from industry guests and discover useful takeaways on planning, teamwork, construction technology, safety, and delivering a better finished project.</p>
+              <a class="read-link" href="#">Read the episode notes</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission" id="mission">
+      <div class="container mission-grid">
+        <div class="reveal">
+          <p class="eyebrow">Our mission</p>
+          <h2 class="section-title">From the <em>blueprint</em> to the build.</h2>
+        </div>
+        <div class="reveal">
+          <div class="mission-copy">
+            <p>We bridge the gap between the blueprint and the build. Our podcast is built for the professionals who make construction happen, offering expert interviews and industry insights tailored for general contractors, homeowners, and the skilled workers on the ground.</p>
+          </div>
+          <div class="mission-stats">
+            <div class="stat"><strong>100%</strong><span>Built for the field</span></div>
+            <div class="stat"><strong>4</strong><span>Listener groups</span></div>
+            <div class="stat"><strong>1</strong><span>Shared mission</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="listen" id="listen">
+      <div class="container listen-grid">
+        <div class="listen-copy reveal">
+          <p class="eyebrow">Available everywhere</p>
+          <h2 class="section-title">Listen Your Way</h2>
+          <p>Take the conversation with you—at the office, in the truck, or on the jobsite. Select your preferred podcast platform.</p>
+        </div>
+        <div class="platforms reveal">
+          <a class="platform" href="#" aria-label="Listen on Apple Podcasts"><span class="platform-icon">A</span><div><span>Listen on</span><strong>Apple Podcasts</strong></div></a>
+          <a class="platform" href="#" aria-label="Listen on Spotify"><span class="platform-icon">S</span><div><span>Listen on</span><strong>Spotify</strong></div></a>
+          <a class="platform" href="#" aria-label="Listen on YouTube Music"><span class="platform-icon">Y</span><div><span>Listen on</span><strong>YouTube Music</strong></div></a>
+          <a class="platform" href="#" aria-label="Listen on Pocket Casts"><span class="platform-icon">P</span><div><span>Listen on</span><strong>Pocket Casts</strong></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container gallery-head reveal">
+        <div>
+          <p class="eyebrow">From the ground up</p>
+          <h2 class="section-title">Life on Site</h2>
+        </div>
+        <p class="gallery-copy">A visual look at the planning, craftsmanship, teamwork, and momentum behind every successful build.</p>
+      </div>
+      <div class="gallery-strip">
+        <figure class="gallery-item" data-label="Planning together"><img src="https://images.pexels.com/photos/9050949/pexels-photo-9050949.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Construction team reviewing plans" loading="lazy"></figure>
+        <figure class="gallery-item" data-label="Building the frame"><img src="https://images.pexels.com/photos/17410716/pexels-photo-17410716.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Worker on a residential construction frame" loading="lazy"></figure>
+        <figure class="gallery-item" data-label="Strength in teamwork"><img src="https://images.pexels.com/photos/11293626/pexels-photo-11293626.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Workers assembling a wood structure" loading="lazy"></figure>
+        <figure class="gallery-item" data-label="Details matter"><img src="https://images.pexels.com/photos/8830265/pexels-photo-8830265.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Carpenter working on a house structure" loading="lazy"></figure>
+        <figure class="gallery-item" data-label="Progress every day"><img src="https://images.pexels.com/photos/9964624/pexels-photo-9964624.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Workers on a large construction project" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="container newsletter-grid">
+        <h2 class="reveal">Get new episodes from the jobsite.</h2>
+        <div class="reveal">
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" aria-label="Email address" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+          </form>
+          <p class="newsletter-note" id="newsletterMessage">Monthly highlights. Practical ideas. No clutter.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2 class="footer-logo">Built From<br>The Ground Up</h2>
+        </div>
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="#home">Home</a>
+          <a href="#episodes">Latest Episodes</a>
+          <a href="#mission">Our Mission</a>
+          <a href="#listen">Listen Now</a>
+        </div>
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <a href="mailto:info@builtfromthegroundup.com">info@builtfromthegroundup.com</a>
+          <a href="tel:+15550123456">+1 (555) 012-3456</a>
+          <div class="socials" aria-label="Social media links">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="YouTube">YT</a>
+            <a href="#" aria-label="LinkedIn">IN</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Built From the Ground Up</span>
+        <span>Construction conversations for the people who make it happen.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    menuToggle.addEventListener('click', () => {
+      const open = menuToggle.classList.toggle('open');
+      navLinks.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    document.getElementById('newsletterForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const message = document.getElementById('newsletterMessage');
+      message.textContent = 'Thanks for subscribing. Your next construction conversation is on the way.';
+      event.currentTarget.reset();
+    });
+  </script>
+</body>
+</html>
